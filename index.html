@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Mines</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header>
+  <div class="remaining">
+    <p>Markers Left: <span></span></p>
+  </div>
+</header>
+<main>
+  <div class="game-board" id="gameBoard" data-level="10"></div>
+  <div class="buttons">
+    <button class="button level-button" data-level="10">10</button>
+    <button class="button level-button" data-level="40">40</button>
+    <button class="button level-button" data-level="100">100</button>
+    <button class="button reset-button" id="reset"><svg xmlns="http://www.w3.org/2000/svg"><use href="#reset-icon" /></svg></button>
+    <button class="button info-button" id="info"><svg xmlns="http://www.w3.org/2000/svg"><use href="#info-icon" /></svg></button>
+  </div>
+</main>
+<footer><div class="debug display-none"></div></footer>
+<aside id="modal-overlay" class="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="close-button" id="close"><svg xmlns="http://www.w3.org/2000/svg"><use href="#close-icon" /></svg></button>
+    <div class="modal-message" id="modal-message"></div>
+  </div>
+
+</aside>
+<svg id="defs" xmlns="http://www.w3.org/2000/svg">
+  <!-- icons from RemixIcon v 2.5.0 -->
+  <symbol id="info-icon" viewBox="0 0 24 24" ><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z"/></symbol>
+  <symbol id="reset-icon" viewBox="0 0 24 24"><path d="M5.463 4.433A9.961 9.961 0 0 1 12 2c5.523 0 10 4.477 10 10 0 2.136-.67 4.116-1.81 5.74L17 12h3A8 8 0 0 0 6.46 6.228l-.997-1.795zm13.074 15.134A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12c0-2.136.67-4.116 1.81-5.74L7 12H4a8 8 0 0 0 13.54 5.772l.997 1.795z"/></symbol>
+  <symbol id="close-icon" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-9.414l2.828-2.829 1.415 1.415L13.414 12l2.829 2.828-1.415 1.415L12 13.414l-2.828 2.829-1.415-1.415L10.586 12 7.757 9.172l1.415-1.415L12 10.586z"/></symbol>
+</svg>
+</body>
+</html>
