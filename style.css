@@ -9,8 +9,6 @@
 }
   
 :root {
-
-  
   --color-darker: hsl(240deg 50% 10%);
   --color-dark: hsl(240deg 50% 25%);
   --color: hsl(240deg 50% 60%);
@@ -84,11 +82,11 @@ svg {
   text-align: center;
 }
 
-.cell.flagged {
+[data-marked] {
   background-color: var(--color-mine);
 }
 
-.revealed {
+[data-revealed] {
   background-color: var(--color-light);
 }
 
