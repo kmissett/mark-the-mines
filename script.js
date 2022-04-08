@@ -1,6 +1,7 @@
 const modal = document.getElementById("modal-overlay")
 const gameBoard = document.querySelector(".game-board")
 const markersRemaining = document.querySelector(".remaining span")
+const debug = document.querySelector(".debug")
 
 const GameBoard = (level) => {
   let numMines, numRows, numCols
@@ -152,7 +153,13 @@ const GameBoard = (level) => {
     }
   }
 
-  return { toggleMark, handleClick }
+  const debugMode = (e) => {
+    if (debug.classList.contains("display-none")) return
+    const currentIndex = parseInt(e.target.dataset.index)
+    if(mineLocations.includes(currentIndex)) {debug.style.backgroundColor = "var(--color-mine)"}
+  }
+
+  return { toggleMark, handleClick, debugMode }
 }
 
 const startGame = () => {
@@ -163,19 +170,23 @@ const startGame = () => {
   const level = parseInt(currentLevel)
   const game = GameBoard(level)
 
-  const cellButtons = document.querySelectorAll(".cell")
-  cellButtons.forEach(button=> button.addEventListener("mousedown", (e) => game.handleClick(e)))
-  cellButtons.forEach(button=> button.addEventListener("contextmenu", (e) => {
-    e.preventDefault()
-    game.toggleMark(e)
-  }))
+  // addEventListeners to buttons
+  document.querySelectorAll(".cell").forEach(button => {
+    button.addEventListener("mousedown", (e) => game.handleClick(e))
+    button.addEventListener("contextmenu", (e) => {
+      e.preventDefault()
+      game.toggleMark(e)
+    })
+    button.addEventListener("mouseover", (e) => game.debugMode(e))
+    button.addEventListener("mouseout", () => debug.style.backgroundColor = "var(--color-light)")
+  })
 }
 
 
 startGame()
 
 // restart the game at the current level
-document.getElementById("reset").addEventListener("click", () => startGame)
+document.getElementById("reset").addEventListener("click", () => startGame())
 
 // change the level and restart the game
 document.querySelectorAll(".level-button").forEach(levelButton => levelButton.addEventListener("click", (e) => {
@@ -204,3 +215,6 @@ document.querySelector(".close-button").addEventListener("click", () => modal.cl
 window.addEventListener("keydown", (e) => {
   if(e.key === "Escape" && modal.classList.contains("active")) modal.classList.remove("active")
 })
+
+// toggle debug mode
+document.querySelector(".remaining").addEventListener("click", () => debug.classList.toggle("display-none"))
